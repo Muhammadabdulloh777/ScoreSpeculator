@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT Score Estimator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-graduation-cap"></i> SAT Score Estimator</h1>
+            <p class="subtitle">Estimate your SAT score based on correct answers in the adaptive digital SAT</p>
+        </header>
+
+        <main>
+            <!-- Start Screen -->
+            <div id="startScreen" class="card active">
+                <div class="card-header">
+                    <h2><i class="fas fa-play-circle"></i> How It Works</h2>
+                </div>
+                <div class="card-content">
+                    <p>The digital SAT is adaptive, meaning your performance in the first module affects the difficulty of the second module. This estimator accounts for that adaptation to provide a more accurate score prediction.</p>
+                    
+                    <div class="info-box">
+                        <h3><i class="fas fa-info-circle"></i> Test Structure</h3>
+                        <div class="structure-grid">
+                            <div class="structure-item">
+                                <h4>Reading & Writing</h4>
+                                <p><strong>Module 1:</strong> 22 questions</p>
+                                <p><strong>Module 2:</strong> 22 questions</p>
+                                <p><strong>Total:</strong> 44 questions</p>
+                            </div>
+                            <div class="structure-item">
+                                <h4>Math</h4>
+                                <p><strong>Module 1:</strong> 27 questions</p>
+                                <p><strong>Module 2:</strong> 27 questions</p>
+                                <p><strong>Total:</strong> 54 questions</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3><i class="fas fa-chart-line"></i> Scoring Notes</h3>
+                        <ul>
+                            <li>Scores range from 400 to 1600 (200-800 per section)</li>
+                            <li>No penalty for incorrect answers</li>
+                            <li>Second module adapts based on first module performance</li>
+                        </ul>
+                    </div>
+                    
+                    <button id="startBtn" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Start Estimating
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calculator Screen -->
+            <div id="calculatorScreen" class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calculator"></i> Enter Your Correct Answers</h2>
+                </div>
+                <div class="card-content">
+                    <form id="scoreForm">
+                        <div class="section-inputs">
+                            <!-- Reading & Writing Section -->
+                            <div class="section-card">
+                                <div class="section-header">
+                                    <h3><i class="fas fa-book-open"></i> Reading & Writing</h3>
+                                    <span class="section-total">44 questions total</span>
+                                </div>
+                                
+                                <div class="module-input">
+                                    <h4>Module 1 (22 questions)</h4>
+                                    <div class="input-group">
+                                        <label for="rwModule1">Correct answers:</label>
+                                        <input type="number" id="rwModule1" min="0" max="22" value="0">
+                                        <div class="range-display">
+                                            <input type="range" id="rwModule1Range" min="0" max="22" value="0" class="slider">
+                                            <span id="rwModule1Value" class="range-value">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="module-input">
+                                    <h4>Module 2 (22 questions)</h4>
+                                    <div class="input-group">
+                                        <label for="rwModule2">Correct answers:</label>
+                                        <input type="number" id="rwModule2" min="0" max="22" value="0">
+                                        <div class="range-display">
+                                            <input type="range" id="rwModule2Range" min="0" max="22" value="0" class="slider">
+                                            <span id="rwModule2Value" class="range-value">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="section-summary">
+                                    <p>Reading & Writing Total: <span id="rwTotal">0</span> / 44</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Math Section -->
+                            <div class="section-card">
+                                <div class="section-header">
+                                    <h3><i class="fas fa-calculator"></i> Math</h3>
+                                    <span class="section-total">54 questions total</span>
+                                </div>
+                                
+                                <div class="module-input">
+                                    <h4>Module 1 (27 questions)</h4>
+                                    <div class="input-group">
+                                        <label for="mathModule1">Correct answers:</label>
+                                        <input type="number" id="mathModule1" min="0" max="27" value="0">
+                                        <div class="range-display">
+                                            <input type="range" id="mathModule1Range" min="0" max="27" value="0" class="slider">
+                                            <span id="mathModule1Value" class="range-value">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="module-input">
+                                    <h4>Module 2 (27 questions)</h4>
+                                    <div class="input-group">
+                                        <label for="mathModule2">Correct answers:</label>
+                                        <input type="number" id="mathModule2" min="0" max="27" value="0">
+                                        <div class="range-display">
+                                            <input type="range" id="mathModule2Range" min="0" max="27" value="0" class="slider">
+                                            <span id="mathModule2Value" class="range-value">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="section-summary">
+                                    <p>Math Total: <span id="mathTotal">0</span> / 54</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" id="backBtn" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="submit" id="calculateBtn" class="btn btn-primary">
+                                <i class="fas fa-chart-bar"></i> Calculate Estimated Score
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="resultsScreen" class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-bar"></i> Estimated SAT Score</h2>
+                </div>
+                <div class="card-content">
+                    <div class="score-display">
+                        <div class="total-score">
+                            <h3>Total Estimated Score</h3>
+                            <div class="score-circle">
+                                <span id="totalScore">0</span>
+                                <div class="score-range">400 - 1600</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section-scores">
+                            <div class="section-score">
+                                <h4>Reading & Writing</h4>
+                                <div class="section-score-value">
+                                    <span id="rwScore">0</span>
+                                    <span class="score-range">200 - 800</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div id="rwProgress" class="progress-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="section-score">
+                                <h4>Math</h4>
+                                <div class="section-score-value">
+                                    <span id="mathScore">0</span>
+                                    <span class="score-range">200 - 800</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div id="mathProgress" class="progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-details">
+                        <h3><i class="fas fa-info-circle"></i> How Your Score Was Calculated</h3>
+                        <p>The adaptive SAT adjusts the difficulty of the second module based on your performance in the first module. This estimator:</p>
+                        <ul>
+                            <li>Uses your first module performance to determine the difficulty of the second module</li>
+                            <li>Applies different scoring curves based on module difficulty</li>
+                            <li>Accounts for the fact that harder modules have more generous scoring curves</li>
+                        </ul>
+                        
+                        <div class="results-summary">
+                            <div class="summary-item">
+                                <h4>Reading & Writing Performance</h4>
+                                <p>Module 1: <span id="summaryRw1">0</span>/22 correct</p>
+                                <p>Module 2: <span id="summaryRw2">0</span>/22 correct</p>
+                                <p>Total: <span id="summaryRwTotal">0</span>/44 correct</p>
+                            </div>
+                            <div class="summary-item">
+                                <h4>Math Performance</h4>
+                                <p>Module 1: <span id="summaryMath1">0</span>/27 correct</p>
+                                <p>Module 2: <span id="summaryMath2">0</span>/27 correct</p>
+                                <p>Total: <span id="summaryMathTotal">0</span>/54 correct</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button id="newEstimationBtn" class="btn btn-primary">
+                            <i class="fas fa-redo"></i> New Estimation
+                        </button>
+                        <button id="resultsBackBtn" class="btn btn-secondary">
+                            <i class="fas fa-edit"></i> Adjust Answers
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p><i class="fas fa-exclamation-circle"></i> <strong>Disclaimer:</strong> This is an estimation tool only. Actual SAT scores may vary based on the specific test form, scaling, and other factors. This tool is not affiliated with the College Board.</p>
+            <p class="footer-note">SAT® is a registered trademark of the College Board, which is not affiliated with this site.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
